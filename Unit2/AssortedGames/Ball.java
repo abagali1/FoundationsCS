@@ -1,0 +1,79 @@
+//Name:              Date:
+import java.awt.*;
+public class Ball extends Polkadot
+{
+   private double dx;       // pixels to move each time step() is called.
+   private double dy;
+    // constructors
+   public Ball()         //default constructor
+   {
+      super(200, 200, 50, Color.BLACK);
+      dx = Math.random() * 12 - 6;          // to move vertically
+      dy = Math.random() * 12 - 6;          // to move sideways
+   }
+   public Ball(double x, double y, double dia, Color c)
+   {
+      super(x, y, dia, c);
+      dx = Math.random()* 12 - 6;
+      dy = Math.random() * 12 - 6;
+   }
+      
+     //modifier methods 
+   public void setdx(double x)        
+   {
+      dx = x;
+   }
+   public void setdy(double y)
+   {
+      dy = y;
+   }
+   public void setDelta(){
+      dx = Math.random() * 12 -6;
+      dy = Math.random() * 12 -6;
+   }
+   public void setNormDelta(){
+      dx = 0;
+      dy=0;
+   }
+      //accessor methods
+   public double getdx()             
+   {
+      return dx;
+   }
+   public double getdy()
+   {
+      return dy;
+   }
+      
+     //instance methods
+   public void move(double rightEdge, double bottomEdge)
+   {
+      setX(getX() + dx);
+      setY(getY() + dy);
+      if (getX() >= rightEdge - getRadius())
+      {
+         setX(rightEdge - getRadius());
+         dx *= -1.0;
+      }
+      else if (getX() <= getRadius())
+      {
+         setX(getRadius());
+         dx *= -1.0;
+      }
+      if (getY() >= bottomEdge - getRadius())
+      {
+         setY(bottomEdge - getRadius());
+         dy *= -1.0;
+      }
+      else if (getY() <= getRadius())
+      {
+         setY(getRadius());
+         dy *= -1.0;
+      }
+   }
+   public void reset(boolean a){
+      if(a){
+         dx = 4; dy = -1;
+      }
+   }
+}
